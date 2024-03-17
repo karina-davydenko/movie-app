@@ -10,7 +10,9 @@ const App = () => {
     <Provider store={store}>
       <Suspense fallback={'Loading'}>
         <Header />
-        <Outlet />
+        <div className='content'>
+          <Outlet />
+        </div>
       </Suspense>
     </Provider>
   )

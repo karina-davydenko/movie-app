@@ -1,28 +1,62 @@
-import { Switch } from '@mui/material'
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  Slide,
+  Switch,
+  Toolbar,
+  Typography,
+  useScrollTrigger,
+} from '@mui/material'
 import { Link } from 'react-router-dom'
+import './Header.css'
+import { ReactElement } from 'react'
+
+interface Props {
+  window?: () => Window
+  children: ReactElement
+}
+
+function HideOnScroll({ children, window }: Props) {
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  })
+
+  return (
+    <Slide appear={false} direction='down' in={!trigger}>
+      {children}
+    </Slide>
+  )
+}
 
 export default function Header() {
   return (
-    <header>
-      <Link className='logo' to={'/'}>
-        Logo
-      </Link>
+    <>
+      <HideOnScroll>
+        <AppBar
+          className='header'
+          color='default'
+          sx={{ flexDirection: 'row' }}
+        >
+          <Link className='header-logo' to={'/'}>
+            MoviesApp
+          </Link>
 
-      <nav>
-        <ul className='nav'>
-          <Switch />
-          <li>
-            <Link className='navlink' to={'/singup'}>
-              Sign Up
+          <nav className='header-nav'>
+            <Switch />
+
+            <Link className='nav-link' to={'/singup'}>
+              <Button>Sign Up</Button>
             </Link>
-          </li>
-          <li>
-            <Link className='navlink' to={'/singin'}>
-              Sign In
+
+            <Link className='nav-link' to={'/singin'}>
+              <Button>Sign In</Button>
             </Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+          </nav>
+        </AppBar>
+      </HideOnScroll>
+    </>
   )
 }
