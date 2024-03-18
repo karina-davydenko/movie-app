@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Search from '../../components/Search/Search'
+import SearchBar from '../../components/Search/Search'
 
 type Genre = {
   genre: string
@@ -14,15 +14,13 @@ type Film = {
 }
 
 export default function MainPage() {
-  const [value, setValue] = useState<string>('')
-  const [films, setFilms] = useState<Film[] | null>(null)
+  const [films, setFilms] = useState<Film[]>([])
   return (
     <div className='main'>
-      <Search value={value} setValue={setValue} setFilms={setFilms} />
-
-      <section className='cards-films'>
-        {films ? (
-          films.map(film => {
+      <SearchBar setFilms={setFilms} />
+      {films.length !== 0 ? (
+        <section className='cards-films'>
+          {films.map(film => {
             return (
               <div>
                 <p>{film.nameRu}</p>
@@ -31,11 +29,11 @@ export default function MainPage() {
                 <p>{film.genres[0]['genre']}</p>
               </div>
             )
-          })
-        ) : (
-          <h1>Нет</h1>
-        )}
-      </section>
+          })}
+        </section>
+      ) : (
+        <h1>Результатов нет</h1>
+      )}
     </div>
   )
 }
