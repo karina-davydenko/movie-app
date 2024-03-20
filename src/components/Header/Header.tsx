@@ -3,16 +3,17 @@ import {
   Box,
   Button,
   Container,
-  CssBaseline,
   Slide,
   Switch,
   Toolbar,
   Typography,
   useScrollTrigger,
 } from '@mui/material'
+import type { ReactElement } from 'react'
+
+import AdbIcon from '@mui/icons-material/Adb'
+import UserAvatar from '../UserAvatar/UserAvatar'
 import { Link } from 'react-router-dom'
-import './Header.css'
-import { ReactElement } from 'react'
 
 interface Props {
   window?: () => Window
@@ -31,32 +32,73 @@ function HideOnScroll({ children, window }: Props) {
   )
 }
 
+let logOut: boolean = true
+
 export default function Header() {
   return (
-    <>
-      <HideOnScroll>
-        <AppBar
-          className='header'
-          color='default'
-          sx={{ flexDirection: 'row' }}
-        >
-          <Link className='header-logo' to={'/'}>
-            MoviesApp
-          </Link>
+    <HideOnScroll>
+      <AppBar position='fixed' color='default'>
+        <Container maxWidth='xl'>
+          <Toolbar
+            disableGutters
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <Box sx={{ display: 'flex', flexGrow: 1 }}>
+              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <Typography
+                variant='h6'
+                noWrap
+                component='a'
+                href='/'
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                LOGO
+              </Typography>
 
-          <nav className='header-nav'>
+              <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+              <Typography
+                variant='h5'
+                noWrap
+                component='a'
+                href='/'
+                sx={{
+                  mr: 2,
+                  display: { xs: 'flex', md: 'none' },
+                  flexGrow: 1,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                LOGO
+              </Typography>
+            </Box>
+            {logOut ? (
+              <Box>
+                <Link to='/singin'>
+                  <Button>Sing In</Button>
+                </Link>
+                <Link to='/singout'>
+                  <Button>Sing Out</Button>
+                </Link>
+              </Box>
+            ) : (
+              <UserAvatar name='wpk' />
+            )}
             <Switch />
-
-            <Link className='nav-link' to={'/singup'}>
-              <Button>Sign Up</Button>
-            </Link>
-
-            <Link className='nav-link' to={'/singin'}>
-              <Button>Sign In</Button>
-            </Link>
-          </nav>
-        </AppBar>
-      </HideOnScroll>
-    </>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </HideOnScroll>
   )
 }
