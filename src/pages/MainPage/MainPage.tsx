@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import SearchBar, { API_KEY } from '../../components/SearchBar/SearchBar'
+import { API_KEY } from '../../components/SearchBar/SearchBar'
 import { ListCards } from '../../components/ListCards/ListCards'
 
 export default function MainPage() {
@@ -24,10 +24,9 @@ export default function MainPage() {
   }, [])
 
   return (
-    <div className='main'>
-      <SearchBar />
+    <>
       <h1>Топ 20 фильмов</h1>
       <ListCards films={items} />
-    </div>
+    </>
   )
 }
