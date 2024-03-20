@@ -8,10 +8,10 @@ import {
   Typography,
 } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { API_KEY } from '../SearchBar/SearchBar'
 
 type Film = {
-  kinopoiskId: number
+  kinopoiskId?: number
+  filmId?: number
   nameRu: string
   posterUrlPreview: string
 }
@@ -33,7 +33,12 @@ export function ListCards({ films }: PropsListCards) {
       columnSpacing={4}
     >
       {films.map(film => (
-        <Grid key={film.kinopoiskId} width='300px' height='500px' item>
+        <Grid
+          key={film.kinopoiskId || film.filmId}
+          width='300px'
+          height='500px'
+          item
+        >
           <Card>
             <CardActionArea onClick={() => handleClick(film)}>
               <CardMedia
