@@ -1,32 +1,16 @@
-import { useEffect, useState } from 'react'
-import { API_KEY } from '../../components/SearchBar/SearchBar'
 import { ListCards } from '../../components/ListCards/ListCards'
+import { useGetTopMoviesQuery } from '../../app/store/kinopoiskApi'
 
 export default function MainPage() {
-  const [items, setItems] = useState([])
+  const { data } = useGetTopMoviesQuery(null)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(
-        'https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES&page=1',
-        {
-          method: 'GET',
-          headers: {
-            'X-API-KEY': API_KEY,
-          },
-        },
-      )
-      const data = await res.json()
-
-      setItems(data.items)
-    }
-    fetchData()
-  }, [])
-
-  return (
-    <>
-      <h1>Топ 20 фильмов</h1>
-      <ListCards films={items} />
-    </>
-  )
+  if (data) {
+    const { items } = data
+    return (
+      <>
+        <h1>Топ 20 фильмов</h1>
+        <ListCards films={items} />
+      </>
+    )
+  }
 }
