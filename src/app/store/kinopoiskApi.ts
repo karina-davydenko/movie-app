@@ -21,7 +21,16 @@ export const kinopoiskApi = createApi({
         url: `/v2.1/films/search-by-keyword?keyword=${query}&page=${page}`,
       }),
     }),
+    getMovieById: builder.query({
+      query: id => ({
+        url: `/v2.2/films/${id}`,
+      }),
+    }),
   }),
 })
 
-export const { useGetSearchByKeywordQuery, useGetTopMoviesQuery } = kinopoiskApi
+export const {
+  useGetSearchByKeywordQuery,
+  useGetTopMoviesQuery,
+  useGetMovieByIdQuery,
+} = kinopoiskApi
