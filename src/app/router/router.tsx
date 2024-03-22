@@ -3,6 +3,7 @@ import App from '../../App'
 import MainPage from '../../pages/MainPage/MainPage'
 import SearchPage from '../../pages/SearchPage/SearchPage'
 import { ROUTES } from '../../utils/constans'
+import { FilmPage } from '../../pages/FilmPage/FilmPage'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: `${ROUTES.SEARCH}/:search`,
         element: <SearchPage />,
+      },
+      {
+        path: `${ROUTES.FILM}/:film`,
+        element: <FilmPage />,
       },
     ],
   },
