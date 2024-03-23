@@ -1,9 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../../App'
-import MainPage from '../../pages/MainPage/MainPage'
-import SearchPage from '../../pages/SearchPage/SearchPage'
 import { ROUTES } from '../../utils/constans'
-import { FilmPage } from '../../pages/FilmPage/FilmPage'
+import { lazy } from 'react'
+
+const MainPage = lazy(() => import('../../pages/MainPage/MainPage'))
+const SearchPage = lazy(() => import('../../pages/SearchPage/SearchPage'))
+const FilmPage = lazy(() => import('../../pages/FilmPage/FilmPage'))
 
 export const router = createBrowserRouter([
   {

@@ -10,25 +10,21 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { useNavigate } from 'react-router-dom'
-
-type Film = {
-  kinopoiskId?: number
-  filmId?: number
-  nameRu: string
-  posterUrlPreview: string
-}
+import type { ResultFilms } from '../../app/store/transformResponses/types'
 
 type PropsListCards = {
-  films: Film[]
+  films: ResultFilms[]
 }
 
 export function ListCards({ films }: PropsListCards) {
   const navigate = useNavigate()
-  const handleClick = (id: number | undefined) => {
+
+  const handleClick = (id: number | null) => {
     if (id) {
       navigate('/film/' + id)
     }
   }
+
   return (
     <Grid
       direction='row'
@@ -37,11 +33,10 @@ export function ListCards({ films }: PropsListCards) {
       columnSpacing={4}
     >
       {films.map(film => {
-        const id = film.kinopoiskId || film.filmId
         return (
-          <Grid key={id} width='300px' height='500px' item>
+          <Grid key={film.id} width='300px' height='500px' item>
             <Card>
-              <CardActionArea onClick={() => handleClick(id)}>
+              <CardActionArea onClick={() => handleClick(film.id)}>
                 <CardMedia
                   component='img'
                   height='400'
