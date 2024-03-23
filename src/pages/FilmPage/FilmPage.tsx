@@ -10,29 +10,25 @@ import {
   Typography,
 } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-type Country = {
-  country: string
-}
-type Genre = {
-  genre: string
-}
 
-export function FilmPage() {
+export default function FilmPage() {
   const { film } = useParams()
   const { data } = useGetMovieByIdQuery(film)
 
-  if (data) {
-    const countries = data.countries.map(({ country }: Country) => (
+  if (!data) {
+    return <h1>Загрузка</h1>
+  } else {
+    const countries = data.countries.map(({ country }) => (
       <span key={country}> {country} </span>
     ))
-    const genres = data.genres.map(({ genre }: Genre) => (
+
+    const genres = data.genres.map(({ genre }) => (
       <span key={genre}> {genre} </span>
     ))
 
     return (
       <Box justifyContent='center' display='flex' maxWidth={'xl'} gap='30px'>
         <img width='400px' src={data.posterUrl} alt={data.nameRu} />
-
         <Box display='flex' gap='30px' flexDirection='column'>
           <Box display='flex' gap='20px' flexDirection='column'>
             <Typography variant='h3'>{data.nameRu}</Typography>

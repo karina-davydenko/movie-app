@@ -1,4 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { transformMovieById } from './transformResponses/transformMovieById'
+import { transformSearch } from './transformResponses/transformSearch'
+import type { QueryReturnValue } from './transformResponses/types'
+import { transformTopMovies } from './transformResponses/transformTopMovies'
 
 export const kinopoiskApi = createApi({
   reducerPath: 'konopoiskApi',
@@ -8,13 +12,14 @@ export const kinopoiskApi = createApi({
   }),
 
   endpoints: builder => ({
-    getTopMovies: builder.query({
+    getTopMovies: builder.query<QueryReturnValue, void>({
       query: () => ({
         url: '/v2.2/films/collections?type=TOP_POPULAR_ALL',
         params: {
           page: 1,
         },
       }),
+      transformResponse: transformTopMovies,
     }),
     getSearchByKeyword: builder.query({
       query: ({ query, page }) => ({
@@ -23,11 +28,13 @@ export const kinopoiskApi = createApi({
           page,
         },
       }),
+      transformResponse: transformSearch,
     }),
     getMovieById: builder.query({
       query: id => ({
         url: `/v2.2/films/${id}`,
       }),
+      transformResponse: transformMovieById,
     }),
   }),
 })
