@@ -23,10 +23,10 @@ type PropsListCards = {
 }
 
 export function ListCards({ films }: PropsListCards) {
-  const nav = useNavigate()
+  const navigate = useNavigate()
   const handleClick = (id: number | undefined) => {
     if (id) {
-      nav('/film/' + id)
+      navigate('/film/' + id)
     }
   }
   return (
