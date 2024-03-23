@@ -20,6 +20,7 @@ type Genre = {
 export function FilmPage() {
   const { film } = useParams()
   const { data } = useGetMovieByIdQuery(film)
+
   if (data) {
     const countries = data.countries.map(({ country }: Country) => (
       <span key={country}> {country} </span>
@@ -27,6 +28,7 @@ export function FilmPage() {
     const genres = data.genres.map(({ genre }: Genre) => (
       <span key={genre}> {genre} </span>
     ))
+
     return (
       <Box justifyContent='center' display='flex' maxWidth={'xl'} gap='30px'>
         <img width='400px' src={data.posterUrl} alt={data.nameRu} />
