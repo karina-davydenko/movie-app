@@ -4,11 +4,11 @@ import { ListCards } from '../../components/ListCards/ListCards'
 
 export default function SearchPage() {
   const { search } = useParams()
-  const { data } = useGetSearchByKeywordQuery(search)
+  const { data } = useGetSearchByKeywordQuery({ query: search, page: '1' })
   if (data) {
     const { films } = data
     return films[0] ? (
-      <ListCards films={data.films} />
+      <ListCards films={films} />
     ) : (
       <h1>Совпадений не найдено</h1>
     )

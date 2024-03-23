@@ -5,4 +5,5 @@ export const ROUTES = {
   SIGNIN: '/signin',
   FAVORITES: '/favorites',
   HISTORY: '/history',
+  FILM: '/film',
 }
