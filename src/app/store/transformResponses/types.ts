@@ -1,4 +1,12 @@
-export type Film = {
+type Genre = {
+  genre: string
+}
+
+type County = {
+  country: string
+}
+
+export type FilmRes = {
   kinopoiskId?: number
   filmId?: number
   nameRu: string | null
@@ -11,26 +19,37 @@ export type Film = {
   description: string | null
 }
 
-export type FilmsResponse = {
+export type SearchFilmsRes = {
   keyword: string
-  films?: Film[]
-  items?: Film[]
+  films: FilmRes[]
 }
 
-export type ReturnValue = {
+export type ResultSearchFilms = {
+  keyword: string
+  films: ResultFilms[]
+}
+
+export type TopFilmsRes = {
+  items: FilmRes[]
+}
+
+export type ResultTopFilms = {
+  films: ResultFilms[]
+}
+
+export type ResultFilms = {
   id: number | null
   nameRu: string
   posterUrlPreview: string
 }
-export type QueryReturnValue = {
-  keyword: string
-  films: ReturnValue[]
-}
 
-type Genre = {
-  genre: string
-}
-
-type County = {
-  country: string
+export type ResultFilm = {
+  id: number | undefined
+  nameRu: string
+  nameOriginal: string
+  genres: Genre[]
+  countries: County[]
+  posterUrl: string
+  year: string | number
+  description: string
 }

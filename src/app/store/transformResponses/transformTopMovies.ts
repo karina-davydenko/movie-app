@@ -1,10 +1,9 @@
-import type { FilmsResponse, QueryReturnValue, Film } from './types'
+import type { ResultTopFilms, TopFilmsRes } from './types'
 
-export const transformTopMovies = (res: FilmsResponse): QueryReturnValue => {
+export const transformTopMovies = (res: TopFilmsRes): ResultTopFilms => {
   return {
-    keyword: res.keyword || '',
     films:
-      res.items?.map((movie: Film) => {
+      res.items?.map(movie => {
         return {
           id: movie.filmId || movie.kinopoiskId || null,
           nameRu: movie.nameRu || 'Нет названия',

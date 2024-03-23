@@ -10,10 +10,10 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { useNavigate } from 'react-router-dom'
-import type { ReturnValue } from '../../app/store/transformResponses/types'
+import type { ResultFilms } from '../../app/store/transformResponses/types'
 
 type PropsListCards = {
-  films: ReturnValue[]
+  films: ResultFilms[]
 }
 
 export function ListCards({ films }: PropsListCards) {

@@ -1,6 +1,6 @@
-import type { Film } from './types'
+import type { FilmRes, ResultFilm } from './types'
 
-export const transformMovieById = (movie: Film) => {
+export const transformMovieById = (movie: FilmRes): ResultFilm => {
   return {
     id: movie.kinopoiskId,
     nameRu: movie.nameRu || 'Нет названия',
