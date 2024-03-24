@@ -86,10 +86,10 @@ export default function Header() {
             {logOut ? (
               <Box>
                 <Link to='/singin'>
-                  <Button>Sing In</Button>
+                  <Button>Вход</Button>
                 </Link>
-                <Link to='/singout'>
-                  <Button>Sing Out</Button>
+                <Link to='/singup'>
+                  <Button>Регистрация</Button>
                 </Link>
               </Box>
             ) : (

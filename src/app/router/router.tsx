@@ -6,6 +6,7 @@ import { lazy } from 'react'
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'))
 const SearchPage = lazy(() => import('../../pages/SearchPage/SearchPage'))
 const FilmPage = lazy(() => import('../../pages/FilmPage/FilmPage'))
+const SingUpPage = lazy(() => import('../../pages/SingUpPage/SingUpPage'))
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
         path: `${ROUTES.FILM}/:film`,
         element: <FilmPage />,
       },
+      { path: '/singup', element: <SingUpPage /> },
     ],
   },
 ])
