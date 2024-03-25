@@ -10,17 +10,10 @@ import {
   Button,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { useRegister } from '../../shared/hooks/useRegister'
 
 export default function SingUpPage() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log(Array(data.entries()))
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
-  }
+  const handleSubmit = useRegister()
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
