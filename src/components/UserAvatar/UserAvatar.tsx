@@ -1,12 +1,11 @@
 import { Box, Tooltip, IconButton, Menu, MenuItem, Avatar } from '@mui/material'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getUserEmail } from '../../shared/reducers/Firestore/Auth/selectors'
 
-type PropsUser = {
-  name: string
-}
-
-export default function UserAvatar({ name }: PropsUser) {
+export default function UserAvatar() {
+  const userEmail = useSelector(getUserEmail)
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -18,9 +17,9 @@ export default function UserAvatar({ name }: PropsUser) {
   }
   return (
     <Box>
-      <Tooltip title='Open settings'>
+      <Tooltip title='Ваш профиль'>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, flexGrow: 0 }}>
-          <Avatar alt={name} src='/static/images/avatar/2.jpg' />
+          <Avatar alt={userEmail || ''} src='/static/images/avatar/2.jpg' />
         </IconButton>
       </Tooltip>
       <Menu
@@ -40,16 +39,16 @@ export default function UserAvatar({ name }: PropsUser) {
         onClose={handleCloseUserMenu}
       >
         <MenuItem onClick={handleCloseUserMenu}>
-          <Link to={'/profile'}>Profile</Link>
+          <Link to={'/profile'}>{userEmail}</Link>
         </MenuItem>
         <MenuItem onClick={handleCloseUserMenu}>
-          <Link to={'/favorites'}>Favorites</Link>
+          <Link to={'/favorites'}>Избранное</Link>
         </MenuItem>
         <MenuItem onClick={handleCloseUserMenu}>
-          <Link to={'/history'}>History</Link>
+          <Link to={'/history'}>История</Link>
         </MenuItem>
         <MenuItem onClick={handleCloseUserMenu}>
-          <Link to={'/'}>Logout</Link>
+          <Link to={'/'}>Выход</Link>
         </MenuItem>
       </Menu>
     </Box>
