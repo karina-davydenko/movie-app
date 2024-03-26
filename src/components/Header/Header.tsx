@@ -14,6 +14,8 @@ import type { ReactElement } from 'react'
 import AdbIcon from '@mui/icons-material/Adb'
 import UserAvatar from '../UserAvatar/UserAvatar'
 import { Link } from 'react-router-dom'
+import { getIsAuth } from '../../shared/reducers/Auth/selectors'
+import { useAppSelector } from '../../app/store/store'
 
 interface Props {
   window?: () => Window
@@ -32,9 +34,8 @@ function HideOnScroll({ children, window }: Props) {
   )
 }
 
-let logOut: boolean = true
-
 export default function Header() {
+  const isAuth = useAppSelector(getIsAuth)
   return (
     <HideOnScroll>
       <AppBar position='fixed' color='default'>
@@ -83,17 +84,17 @@ export default function Header() {
                 LOGO
               </Typography>
             </Box>
-            {logOut ? (
+            {isAuth ? (
+              <UserAvatar />
+            ) : (
               <Box>
-                <Link to='/singin'>
-                  <Button>Sing In</Button>
+                <Link to='/signin'>
+                  <Button>Вход</Button>
                 </Link>
-                <Link to='/singout'>
-                  <Button>Sing Out</Button>
+                <Link to='/signup'>
+                  <Button>Регистрация</Button>
                 </Link>
               </Box>
-            ) : (
-              <UserAvatar name='wpk' />
             )}
             <Switch />
           </Toolbar>
