@@ -7,13 +7,15 @@ type AuthState = {
   error: string | undefined
 }
 
+const initialState: AuthState = {
+  email: null,
+  isAuth: false,
+  error: undefined,
+}
+
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    email: null,
-    isAuth: false,
-    error: undefined,
-  } as AuthState,
+  initialState,
   reducers: {
     setAuthorized(state, action) {
       state.email = action.payload
