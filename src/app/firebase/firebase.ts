@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
-const db = getFirestore(app)
+export const db = getFirestore(app)
 
 export const createUser = async (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
@@ -26,16 +26,4 @@ export const createUser = async (email: string, password: string) => {
 
 export const signInUser = async (email: string, password: string) => {
   return signInWithEmailAndPassword(getAuth(app), email, password)
-}
-
-export const setProfile = async (user: User) => {
-  try {
-    await setDoc(doc(db, 'users', user.email || ''), {
-      id: user.uid,
-      favorites: [],
-      hisroty: [],
-    })
-  } catch (err) {
-    throw new Error('База данных')
-  }
 }

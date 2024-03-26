@@ -1,11 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { kinopoiskApi } from './kinopoiskApi'
+import firestoreSlice from '../../shared/reducers/Firestore/firestoreSlice'
+
+const rootReducer = combineReducers({
+  [kinopoiskApi.reducerPath]: kinopoiskApi.reducer,
+  firestore: firestoreSlice.reducer,
+})
 
 export const store = configureStore({
-  reducer: {
-    [kinopoiskApi.reducerPath]: kinopoiskApi.reducer,
-  },
+  reducer: rootReducer,
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware().concat(kinopoiskApi.middleware)
   },
@@ -13,5 +17,5 @@ export const store = configureStore({
 
 setupListeners(store.dispatch)
 
-export type AppStore = typeof store
-export type AppDispatch = AppStore['dispatch']
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
