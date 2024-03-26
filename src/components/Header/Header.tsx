@@ -14,11 +14,8 @@ import type { ReactElement } from 'react'
 import AdbIcon from '@mui/icons-material/Adb'
 import UserAvatar from '../UserAvatar/UserAvatar'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import {
-  getIsAuth,
-  getUserEmail,
-} from '../../shared/reducers/Firestore/Auth/selectors'
+import { getIsAuth } from '../../shared/reducers/Auth/selectors'
+import { useAppSelector } from '../../app/store/store'
 
 interface Props {
   window?: () => Window
@@ -38,7 +35,7 @@ function HideOnScroll({ children, window }: Props) {
 }
 
 export default function Header() {
-  const isAuth = useSelector(getIsAuth)
+  const isAuth = useAppSelector(getIsAuth)
   return (
     <HideOnScroll>
       <AppBar position='fixed' color='default'>
@@ -91,10 +88,10 @@ export default function Header() {
               <UserAvatar />
             ) : (
               <Box>
-                <Link to='/singin'>
+                <Link to='/signin'>
                   <Button>Вход</Button>
                 </Link>
-                <Link to='/singup'>
+                <Link to='/signup'>
                   <Button>Регистрация</Button>
                 </Link>
               </Box>

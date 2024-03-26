@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { signup } from './authActions'
+import { login, signup } from './authActions'
 
 type AuthState = {
   isAuth: boolean
@@ -9,11 +9,11 @@ type AuthState = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: <AuthState>{
+  initialState: {
     email: null,
     isAuth: false,
     error: undefined,
-  },
+  } as AuthState,
   reducers: {
     setAuthorized(state, action) {
       state.email = action.payload
@@ -21,10 +21,15 @@ const authSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(signup.fulfilled, (state, action) => {
-      state.email = action.payload.email
-      state.isAuth = true
-    })
+    builder
+      .addCase(signup.fulfilled, (state, action) => {
+        state.email = action.payload.email
+        state.isAuth = true
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.email = action.payload.email
+        state.isAuth = true
+      })
   },
 })
 

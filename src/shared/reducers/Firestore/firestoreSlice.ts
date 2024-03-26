@@ -12,14 +12,14 @@ type UserState = {
 
 const firestoreSlice = createSlice({
   name: 'firestore',
-  initialState: <UserState>{
+  initialState: {
     user: {
       id: null,
       favorites: [],
       history: [],
     },
     error: undefined,
-  },
+  } as UserState,
   reducers: {},
   extraReducers: builder => {
     builder

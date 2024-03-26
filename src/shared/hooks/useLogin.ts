@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../app/store/store'
-import { setProfileDb } from '../reducers/Firestore/firestoreAction'
-import { signup } from '../reducers/Auth/authActions'
+import { login } from '../reducers/Auth/authActions'
 import type { User } from 'firebase/auth'
+import { getProfileDb } from '../reducers/Firestore/firestoreAction'
 
 type UserPayload = {
   payload: User
   type: string
 }
 
-export function useRegister() {
+export function useLogin() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -17,17 +17,17 @@ export function useRegister() {
     event.preventDefault()
 
     const data = new FormData(event.currentTarget)
-    const userSingup = {
+    const user = {
       email: String(data.get('email')),
       password: String(data.get('password')),
     }
 
     try {
-      const registerUser = (await dispatch(signup(userSingup))) as UserPayload
+      const registerUser = (await dispatch(login(user))) as UserPayload
 
-      if (registerUser.type === 'auth/signup/fulfilled') {
+      if (registerUser.type === 'auth/login/fulfilled') {
         navigate('/')
-        await dispatch(setProfileDb(registerUser.payload))
+        await dispatch(getProfileDb(registerUser.payload.uid))
       }
     } catch (err) {
       throw new Error('ошибка запроса')

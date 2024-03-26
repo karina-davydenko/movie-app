@@ -14,6 +14,7 @@ import { useRegister } from '../../shared/hooks/useRegister'
 
 export default function SingUpPage() {
   const handleSubmit = useRegister()
+
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -65,7 +66,7 @@ export default function SingUpPage() {
           </Button>
           <Grid container justifyContent='flex-end'>
             <Grid item>
-              <Link to='/singin'>У вас уже есть аккаут? Войти</Link>
+              <Link to='/signin'>У вас уже есть аккаут? Войти</Link>
             </Grid>
           </Grid>
         </Box>

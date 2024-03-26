@@ -1,11 +1,11 @@
 import { Box, Tooltip, IconButton, Menu, MenuItem, Avatar } from '@mui/material'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getUserEmail } from '../../shared/reducers/Firestore/Auth/selectors'
+import { getUserEmail } from '../../shared/reducers/Auth/selectors'
+import { useAppSelector } from '../../app/store/store'
 
 export default function UserAvatar() {
-  const userEmail = useSelector(getUserEmail)
+  const userEmail = useAppSelector(getUserEmail)
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -39,7 +39,7 @@ export default function UserAvatar() {
         onClose={handleCloseUserMenu}
       >
         <MenuItem onClick={handleCloseUserMenu}>
-          <Link to={'/profile'}>{userEmail}</Link>
+          <Link to={'#'}>{userEmail}</Link>
         </MenuItem>
         <MenuItem onClick={handleCloseUserMenu}>
           <Link to={'/favorites'}>Избранное</Link>
