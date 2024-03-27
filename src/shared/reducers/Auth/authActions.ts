@@ -7,7 +7,6 @@ import {
 } from 'firebase/auth'
 import { auth } from '../../../app/firebase/firebase'
 import { setAuthorized, setLoading } from './authSlice'
-import { getUser } from '../Firestore/selectors'
 import { getProfileDb } from '../Firestore/firestoreAction'
 
 type User = {
