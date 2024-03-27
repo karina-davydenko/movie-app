@@ -3,10 +3,13 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getUserEmail } from '../../shared/reducers/Auth/selectors'
 import { useAppSelector } from '../../app/store/store'
+import { useLogout } from '../../shared/hooks/useLogout'
 
 export default function UserAvatar() {
   const userEmail = useAppSelector(getUserEmail)
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
+
+  const handleLogout = useLogout()
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
@@ -47,7 +50,7 @@ export default function UserAvatar() {
         <MenuItem onClick={handleCloseUserMenu}>
           <Link to={'/history'}>История</Link>
         </MenuItem>
-        <MenuItem onClick={handleCloseUserMenu}>
+        <MenuItem onClick={handleLogout}>
           <Link to={'/'}>Выход</Link>
         </MenuItem>
       </Menu>

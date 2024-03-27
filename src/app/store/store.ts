@@ -22,6 +22,7 @@ export const store = configureStore({
           'auth/signup/rejected',
           'auth/login/rejected',
           'auth/login/fulfilled',
+          'auth/setAuthorized',
         ],
       },
     }).concat(kinopoiskApi.middleware),

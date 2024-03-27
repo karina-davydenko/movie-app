@@ -3,9 +3,10 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth'
 import { auth } from '../../../app/firebase/firebase'
-import { setAuthorized } from './authSlice'
+import { setAuthorized, setLoading } from './authSlice'
 import { getUser } from '../Firestore/selectors'
 import { getProfileDb } from '../Firestore/firestoreAction'
 
@@ -46,15 +47,19 @@ export const login = createAsyncThunk(
   },
 )
 
+export const logout = createAsyncThunk('auth/logout', async () => {
+  await signOut(auth)
+})
+
 export const onAuth = createAsyncThunk(
   'auth/onAuth',
   async (_, { dispatch, rejectWithValue }) => {
     onAuthStateChanged(auth, async user => {
       if (user) {
-        dispatch(setAuthorized(user.uid))
+        dispatch(setAuthorized(user))
         dispatch(getProfileDb(user.uid))
       } else {
-        return rejectWithValue('Error auth check')
+        dispatch(setLoading())
       }
     })
   },

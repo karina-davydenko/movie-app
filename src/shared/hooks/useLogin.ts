@@ -27,8 +27,7 @@ export function useLogin() {
 
       if (registerUser.type === 'auth/login/fulfilled') {
         navigate('/')
-        const dbUser = await dispatch(getProfileDb(registerUser.payload.uid))
-        console.log(dbUser)
+        await dispatch(getProfileDb(registerUser.payload.uid))
       }
     } catch (err) {
       throw new Error('ошибка запроса')
