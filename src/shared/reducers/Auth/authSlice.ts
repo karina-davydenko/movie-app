@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { login, signup } from './authActions'
 
 type AuthState = {
+  id: string | null
   isAuth: boolean
   email: string | null
   error: string | undefined
 }
 
 const initialState: AuthState = {
+  id: null,
   email: null,
   isAuth: false,
   error: undefined,
@@ -18,7 +20,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuthorized(state, action) {
-      state.email = action.payload
+      state.id = action.payload
       state.isAuth = true
     },
   },

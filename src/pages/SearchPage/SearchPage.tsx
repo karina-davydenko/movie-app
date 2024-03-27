@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useGetSearchByKeywordQuery } from '../../app/store/kinopoiskApi'
+import { useGetSearchByKeywordQuery } from '../../app/store/api/kinopoiskApi'
 import { ListCards } from '../../components/ListCards/ListCards'
 
 export default function SearchPage() {

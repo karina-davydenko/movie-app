@@ -1,9 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
 import { auth } from '../../../app/firebase/firebase'
+import { setAuthorized } from './authSlice'
+import { getUser } from '../Firestore/selectors'
+import { getProfileDb } from '../Firestore/firestoreAction'
 
 type User = {
   email: string
@@ -39,5 +43,19 @@ export const login = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error)
     }
+  },
+)
+
+export const onAuth = createAsyncThunk(
+  'auth/onAuth',
+  async (_, { dispatch, rejectWithValue }) => {
+    onAuthStateChanged(auth, async user => {
+      if (user) {
+        dispatch(setAuthorized(user.uid))
+        dispatch(getProfileDb(user.uid))
+      } else {
+        return rejectWithValue('Error auth check')
+      }
+    })
   },
 )

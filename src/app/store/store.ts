@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { kinopoiskApi } from './kinopoiskApi'
+import { kinopoiskApi } from './api/kinopoiskApi'
 import firestoreSlice from '../../shared/reducers/Firestore/firestoreSlice'
 import authSlice from '../../shared/reducers/Auth/authSlice'
 /* eslint-disable @typescript-eslint/no-restricted-imports */

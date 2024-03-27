@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useGetMovieByIdQuery } from '../../app/store/kinopoiskApi'
+import { useGetMovieByIdQuery } from '../../app/store/api/kinopoiskApi'
 import {
   Box,
   Button,

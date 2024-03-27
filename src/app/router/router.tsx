@@ -11,10 +11,11 @@ const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage'))
 
 export const router = createBrowserRouter([
   {
+    path: '/',
     element: <App />,
     children: [
       {
-        path: ROUTES.MAIN,
+        path: '',
         element: <MainPage />,
       },
       {
