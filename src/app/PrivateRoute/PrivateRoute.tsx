@@ -1,4 +1,3 @@
-import { getAuth } from 'firebase/auth'
 import { useAppSelector } from '../store/store'
 import { getIsAuth } from '../../shared/reducers/Auth/selectors'
 import { useEffect } from 'react'

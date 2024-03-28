@@ -10,7 +10,8 @@ import {
 
 import { useNavigate } from 'react-router-dom'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import { ResultFilms } from '../../app/store/api/transformResponses/types'
+import type { ResultFilms } from '../../app/store/api/transformResponses/types'
+import { useFavorites } from '../../shared/hooks/useFavorites'
 
 export default function FilmCard({ film }: { film: ResultFilms }) {
   const navigate = useNavigate()
@@ -21,9 +22,7 @@ export default function FilmCard({ film }: { film: ResultFilms }) {
     }
   }
 
-  const handleFav = () => {
-    console.log('fav')
-  }
+  const { isFavorites, handleFavorites } = useFavorites(film.id || 1)
   return (
     <Grid width='300px' height='500px' item>
       <Card>
@@ -48,10 +47,10 @@ export default function FilmCard({ film }: { film: ResultFilms }) {
         </CardActionArea>
         <CardActions disableSpacing sx={{ padding: 0 }}>
           <Checkbox
-            checked={true}
+            checked={isFavorites}
             icon={<FavoriteBorder />}
             checkedIcon={<Favorite />}
-            onChange={handleFav}
+            onChange={handleFavorites}
           />
         </CardActions>
       </Card>

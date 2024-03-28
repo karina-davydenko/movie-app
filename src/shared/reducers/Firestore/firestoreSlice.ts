@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { setProfileDb } from './firestoreAction'
+import { getProfileDb, setProfileDb } from './firestoreAction'
 
 type UserState = {
   user: {
     id: null | string
-    favorites: string[]
+    favorites: number[]
     history: string[]
   }
   error: string | undefined
@@ -26,6 +26,11 @@ const firestoreSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(setProfileDb.fulfilled, (state, action) => {
+        state.user.id = action.payload.id
+      })
+      .addCase(getProfileDb.fulfilled, (state, action) => {
+        state.user.favorites = action.payload.favorites
+        state.user.history = action.payload.history
         state.user.id = action.payload.id
       })
       .addCase(setProfileDb.rejected, (state, action) => {
