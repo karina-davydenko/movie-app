@@ -1,5 +1,5 @@
 import { ListCards } from '../../components/ListCards/ListCards'
-import { useGetTopMoviesQuery } from '../../app/store/kinopoiskApi'
+import { useGetTopMoviesQuery } from '../../app/store/api/kinopoiskApi'
 
 export default function MainPage() {
   const { data } = useGetTopMoviesQuery()
