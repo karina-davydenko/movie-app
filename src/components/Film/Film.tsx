@@ -7,7 +7,7 @@ import {
   TableRow,
   TableCell,
 } from '@mui/material'
-import { ResultFilm } from '../../app/store/api/transformResponses/types'
+import type { ResultFilm } from '../../app/store/api/transformResponses/types'
 import { useFavorites } from '../../shared/hooks/useFavorites'
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'

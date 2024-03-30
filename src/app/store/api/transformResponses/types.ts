@@ -38,7 +38,7 @@ export type ResultTopFilms = {
 }
 
 export type ResultFilms = {
-  id: number | null
+  id: number
   nameRu: string
   posterUrlPreview: string
 }
