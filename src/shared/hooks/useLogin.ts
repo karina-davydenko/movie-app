@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../app/store/store'
 import { login } from '../reducers/Auth/authActions'
 import type { User } from 'firebase/auth'
-import { getProfileDb } from '../reducers/Firestore/firestoreAction'
+import { getProfile } from '../reducers/Firestore/firestoreAction'
 
 type UserPayload = {
   payload: User
@@ -27,7 +27,7 @@ export function useLogin() {
 
       if (registerUser.type === 'auth/login/fulfilled') {
         navigate('/')
-        await dispatch(getProfileDb(registerUser.payload.uid))
+        await dispatch(getProfile(registerUser.payload.uid))
       }
     } catch (err) {
       throw new Error('ошибка запроса')

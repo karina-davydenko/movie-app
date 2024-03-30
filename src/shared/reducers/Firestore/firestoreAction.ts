@@ -11,8 +11,8 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../../app/firebase/firebase'
 
-export const setProfileDb = createAsyncThunk(
-  'firestore/setProfileDb',
+export const setProfile = createAsyncThunk(
+  'firestore/setProfile',
   async (user: User) => {
     const dbUser = {
       email: user.email,
@@ -31,8 +31,8 @@ export const setProfileDb = createAsyncThunk(
   },
 )
 
-export const getProfileDb = createAsyncThunk(
-  'firestor/getProfileDb',
+export const getProfile = createAsyncThunk(
+  'firestor/getProfile',
   async (userId: string, { rejectWithValue }) => {
     try {
       const userRef = doc(db, 'users', userId)
@@ -50,13 +50,13 @@ type dataFavorite = {
   filmId: number
 }
 
-export const addToFavoritesDb = createAsyncThunk(
-  'firestore/addToFavoritesDb',
+export const addToFavorites = createAsyncThunk(
+  'firestore/addToFavorites',
   async ({ userId, filmId }: dataFavorite, { dispatch, rejectWithValue }) => {
     try {
       const userRef = doc(db, 'users', userId)
       await updateDoc(userRef, { favorites: arrayUnion(filmId) })
-      await dispatch(getProfileDb(userId))
+      await dispatch(getProfile(userId))
       return filmId
     } catch (error) {
       return rejectWithValue(error)
@@ -64,7 +64,7 @@ export const addToFavoritesDb = createAsyncThunk(
   },
 )
 
-export const removeFromFavoritesDb = createAsyncThunk(
+export const removeFromFavorites = createAsyncThunk(
   'firestore/removeFromFavorite',
   async ({ userId, filmId }: dataFavorite, { dispatch, rejectWithValue }) => {
     try {
@@ -72,7 +72,7 @@ export const removeFromFavoritesDb = createAsyncThunk(
       await updateDoc(userRef, {
         favorites: arrayRemove(filmId),
       })
-      await dispatch(getProfileDb(userId))
+      await dispatch(getProfile(userId))
     } catch (error) {
       return rejectWithValue(error)
     }

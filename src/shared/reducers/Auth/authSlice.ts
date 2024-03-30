@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { login, logout, onAuth, signup } from './authActions'
 
 type AuthState = {
-  id: string | null
+  id: string
   isAuth: boolean
   isLoading: boolean
   email: string | null
@@ -11,7 +11,7 @@ type AuthState = {
 
 const initialState: AuthState = {
   isLoading: true,
-  id: null,
+  id: '',
   email: null,
   isAuth: false,
   error: undefined,

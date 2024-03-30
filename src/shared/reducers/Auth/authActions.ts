@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth'
 import { auth } from '../../../app/firebase/firebase'
 import { setAuthorized, setLoading } from './authSlice'
-import { getProfileDb } from '../Firestore/firestoreAction'
+import { getProfile } from '../Firestore/firestoreAction'
 
 type User = {
   email: string
@@ -56,7 +56,7 @@ export const onAuth = createAsyncThunk(
     onAuthStateChanged(auth, async user => {
       if (user) {
         dispatch(setAuthorized(user))
-        dispatch(getProfileDb(user.uid))
+        dispatch(getProfile(user.uid))
       } else {
         dispatch(setLoading())
       }

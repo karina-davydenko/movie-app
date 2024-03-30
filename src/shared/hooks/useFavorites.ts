@@ -5,8 +5,8 @@ import { getIsAuth, getUserId } from '../reducers/Auth/selectors'
 import { useCallback } from 'react'
 import { getUserBd } from '../reducers/Firestore/selectors'
 import {
-  addToFavoritesDb,
-  removeFromFavoritesDb,
+  addToFavorites,
+  removeFromFavorites,
 } from '../reducers/Firestore/firestoreAction'
 
 export function useFavorites(filmId: number) {
@@ -24,9 +24,9 @@ export function useFavorites(filmId: number) {
     }
 
     if (!isFavorites) {
-      userId && dispatch(addToFavoritesDb({ userId, filmId }))
+      dispatch(addToFavorites({ userId, filmId }))
     } else {
-      userId && dispatch(removeFromFavoritesDb({ userId, filmId }))
+      dispatch(removeFromFavorites({ userId, filmId }))
     }
   }, [isFavorites, dispatch, filmId, userId, isAuth, navigate])
 
