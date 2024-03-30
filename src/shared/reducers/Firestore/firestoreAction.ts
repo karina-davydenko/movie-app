@@ -78,3 +78,37 @@ export const removeFromFavorites = createAsyncThunk(
     }
   },
 )
+
+interface UserHistory {
+  userId: string
+  keyword: string
+}
+
+export const addToHistory = createAsyncThunk(
+  'firestore/addToHistory',
+  async ({ userId, keyword }: UserHistory, { dispatch, rejectWithValue }) => {
+    try {
+      const userRef = doc(db, 'users', userId)
+      await updateDoc(userRef, {
+        history: arrayUnion(keyword),
+      })
+      await dispatch(getProfile(userId))
+    } catch (error) {
+      rejectWithValue(error)
+    }
+  },
+)
+export const deleteFromHistory = createAsyncThunk(
+  'firestore/deleteFromHistory',
+  async ({ userId, keyword }: UserHistory, { dispatch, rejectWithValue }) => {
+    try {
+      const userRef = doc(db, 'users', userId)
+      await updateDoc(userRef, {
+        history: arrayRemove(keyword),
+      })
+      await dispatch(getProfile(userId))
+    } catch (error) {
+      rejectWithValue(error)
+    }
+  },
+)
