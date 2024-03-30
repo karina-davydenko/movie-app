@@ -44,12 +44,13 @@ export type ResultFilms = {
 }
 
 export type ResultFilm = {
-  id: number | undefined
+  id: number
   nameRu: string
   nameOriginal: string
   genres: Genre[]
   countries: County[]
   posterUrl: string
+  posterUrlPreview: string
   year: string | number
   description: string
 }

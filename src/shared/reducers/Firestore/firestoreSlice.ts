@@ -5,7 +5,6 @@ type UserState = {
   id: null | string
   favorites: number[]
   history: string[]
-
   error: string | undefined
 }
 
