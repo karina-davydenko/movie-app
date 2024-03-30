@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../app/store/store'
-import { setProfileDb } from '../reducers/Firestore/firestoreAction'
+import { setProfile } from '../reducers/Firestore/firestoreAction'
 import { signup } from '../reducers/Auth/authActions'
 import type { User } from 'firebase/auth'
 
@@ -27,7 +27,7 @@ export function useRegister() {
 
       if (registerUser.type === 'auth/signup/fulfilled') {
         navigate('/')
-        await dispatch(setProfileDb(registerUser.payload))
+        await dispatch(setProfile(registerUser.payload))
       }
     } catch (err) {
       throw new Error('ошибка запроса')
