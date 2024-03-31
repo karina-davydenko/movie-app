@@ -5,7 +5,7 @@ export const transformTopMovies = (res: TopFilmsRes): ResultTopFilms => {
     films:
       res.items?.map(movie => {
         return {
-          id: movie.filmId || movie.kinopoiskId || null,
+          id: movie.filmId || movie.kinopoiskId || NaN,
           nameRu: movie.nameRu || 'Нет названия',
           posterUrlPreview: movie.posterUrlPreview || 'Нет фото',
         }

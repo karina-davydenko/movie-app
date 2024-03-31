@@ -4,6 +4,7 @@ import { ROUTES } from '../../utils/constans'
 import { lazy } from 'react'
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute'
 import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage'
+import HistoryPage from '../../pages/HistoryPage/HistoryPage'
 
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'))
 const SearchPage = lazy(() => import('../../pages/SearchPage/SearchPage'))
@@ -31,7 +32,10 @@ export const router = createBrowserRouter([
       {
         path: '',
         element: <PrivateRoute />,
-        children: [{ path: 'favorites', element: <FavoritesPage /> }],
+        children: [
+          { path: 'favorites', element: <FavoritesPage /> },
+          { path: 'history', element: <HistoryPage /> },
+        ],
       },
       { path: '/signup', element: <SignUpPage /> },
       { path: '/signin', element: <SignInPage /> },

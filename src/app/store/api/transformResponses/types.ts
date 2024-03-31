@@ -38,18 +38,19 @@ export type ResultTopFilms = {
 }
 
 export type ResultFilms = {
-  id: number | null
+  id: number
   nameRu: string
   posterUrlPreview: string
 }
 
 export type ResultFilm = {
-  id: number | undefined
+  id: number
   nameRu: string
   nameOriginal: string
   genres: Genre[]
   countries: County[]
   posterUrl: string
+  posterUrlPreview: string
   year: string | number
   description: string
 }
