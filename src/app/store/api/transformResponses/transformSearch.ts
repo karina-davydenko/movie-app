@@ -6,7 +6,7 @@ export const transformSearch = (res: SearchFilmsRes): ResultSearchFilms => {
     films:
       res.films?.map(movie => {
         return {
-          id: movie.filmId || movie.kinopoiskId || NaN,
+          id: movie.filmId || movie.kinopoiskId,
           nameRu: movie.nameRu || 'Нет названия',
           posterUrlPreview: movie.posterUrlPreview || 'Нет фото',
         }

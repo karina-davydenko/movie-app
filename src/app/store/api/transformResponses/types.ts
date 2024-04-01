@@ -7,7 +7,7 @@ type County = {
 }
 
 export type FilmRes = {
-  kinopoiskId?: number
+  kinopoiskId: number
   filmId?: number
   nameRu: string | null
   nameOriginal?: string | null
