@@ -59,6 +59,7 @@ export const onAuth = createAsyncThunk(
         dispatch(getProfile(user.uid))
       } else {
         dispatch(setLoading())
+        return rejectWithValue('Authentication check error')
       }
     })
   },

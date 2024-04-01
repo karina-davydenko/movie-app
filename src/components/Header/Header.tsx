@@ -9,13 +9,14 @@ import {
   Typography,
   useScrollTrigger,
 } from '@mui/material'
-import type { ReactElement } from 'react'
+import { useContext, type ReactElement } from 'react'
 
 import AdbIcon from '@mui/icons-material/Adb'
 import UserAvatar from '../UserAvatar/UserAvatar'
 import { Link } from 'react-router-dom'
 import { getIsAuth } from '../../shared/reducers/Auth/selectors'
 import { useAppSelector } from '../../app/store/store'
+import { ThemeContext } from '../../app/context/themeContext'
 
 interface Props {
   window?: () => Window
@@ -36,9 +37,11 @@ function HideOnScroll({ children, window }: Props) {
 
 export default function Header() {
   const isAuth = useAppSelector(getIsAuth)
+  const { theme, toggleTheme } = useContext(ThemeContext)
+
   return (
     <HideOnScroll>
-      <AppBar position='fixed' color='default'>
+      <AppBar position='fixed' color={theme} enableColorOnDark={true}>
         <Container maxWidth='xl'>
           <Toolbar
             disableGutters
@@ -96,7 +99,7 @@ export default function Header() {
                 </Link>
               </Box>
             )}
-            <Switch />
+            <Switch onClick={toggleTheme} />
           </Toolbar>
         </Container>
       </AppBar>

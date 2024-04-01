@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './app/router/router'
 import { Provider } from 'react-redux'
 import { store } from './app/store/store'
+import { ThemeProvider } from './app/context/themeContext'
 
 const container = document.getElementById('root')
 
@@ -14,9 +15,11 @@ if (container) {
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <Suspense fallback={<h1>Загрузка страницы</h1>}>
-          <RouterProvider router={router} />
-        </Suspense>
+        <ThemeProvider>
+          <Suspense fallback={<h1>Загрузка страницы</h1>}>
+            <RouterProvider router={router} />
+          </Suspense>
+        </ThemeProvider>
       </Provider>
     </React.StrictMode>,
   )
