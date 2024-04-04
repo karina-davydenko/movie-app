@@ -12,7 +12,7 @@ startTypedListening({
   type: 'auth/signup/fulfilled',
   effect: (_, { getState }) => {
     const email = getState().auth.email
-    alert(`Регистрация прошла успешно, ваш email: ${email}`)
+    console.log(`Регистрация прошла успешно, ваш email: ${email}`)
   },
 })
 

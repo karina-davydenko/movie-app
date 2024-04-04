@@ -32,13 +32,13 @@ export default function SearchBar() {
       sx={{ margin: '100px' }}
       renderOption={(props, option) => (
         <Box
+          {...props}
           sx={{
             borderRadius: '8px',
             margin: '5px',
           }}
           component='li'
-          {...props}
-          key={nanoid()}
+          key={props.id}
         >
           {option}
         </Box>
