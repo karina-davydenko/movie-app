@@ -17,21 +17,21 @@
 - [x] Для хранения учетных записей пользователей, их Избранного и Истории поиска, использовал **Firebase**. Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/firebase/firebase.ts)
       **React**
 - [x] **Пишем функциональные компоненты c хуками** в приоритете над классовыми.
-- [] Есть разделение на **умные и глупые компоненты** Ссылка на код [Глупый компонент]() и [Умный компонент]()
+- [x] Есть разделение на **умные и глупые компоненты** Ссылка на код [Глупый компонент](https://github.com/karina-davydenko/movie-app/blob/main/src/components/Film/Film.tsx) и [Умный компонент](https://github.com/karina-davydenko/movie-app/blob/main/src/components/Header/Header.tsx)
 - [x] Есть **рендеринг списков** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/components/ListCards/ListCards.tsx)
 - [x] Реализована хотя бы одна **форма** Использовал [Material UI](https://mui.com/) Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/pages/SignUpPage/SingUpPage.tsx#L35)
 - [x] Есть применение **Контекст API** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/context/themeContext.tsx)
 - [x] Есть применение **предохранителя** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/App.tsx#L15)
 - [x] Есть хотя бы один **кастомный хук** Ссылка на [код](https://github.com/karina-davydenko/movie-app/tree/main/src/shared/hooks)
-- [] Хотя бы несколько компонентов используют **PropTypes** Ссылка на [код]() и [второй]()
-- [] Поиск не должен триггерить много запросов к серверу (**debounce**) Ссылка на [код]()
+- [ ] Хотя бы несколько компонентов используют **PropTypes** Ссылка на [код]() и [второй]()
+- [ ] Поиск не должен триггерить много запросов к серверу (**debounce**) Ссылка на [код]()
 - [x] Есть применение **lazy + Suspense** Ссылка на код [lazy](https://github.com/karina-davydenko/movie-app/blob/main/src/app/router/router.tsx#L9) [Suspense](https://github.com/karina-davydenko/movie-app/blob/main/src/main.tsx#L19)
 
 **Redux**
 
 - [x] Используем **Modern Redux with Redux Toolkit** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/store/store.ts)
 - [x] Используем **слайсы** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/shared/reducers/Firestore/firestoreSlice.ts)
-- [] Есть хотя бы одна **кастомная мидлвара** Ссылка на [код]()
+- [ ] Есть хотя бы одна **кастомная мидлвара** Ссылка на [код]()
 - [x] Используется **RTK Query** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/store/api/kinopoiskApi.ts)
 - [x] Используется **Transforming Responses** Ссылка на [код](https://github.com/karina-davydenko/movie-app/tree/main/src/app/store/api/transformResponses)
 
