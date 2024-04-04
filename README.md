@@ -23,15 +23,15 @@
 - [x] Есть применение **Контекст API** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/context/themeContext.tsx)
 - [x] Есть применение **предохранителя** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/App.tsx#L15)
 - [x] Есть хотя бы один **кастомный хук** Ссылка на [код](https://github.com/karina-davydenko/movie-app/tree/main/src/shared/hooks)
-- [ ] Хотя бы несколько компонентов используют **PropTypes** Ссылка на [код]() и [второй]()
-- [ ] Поиск не должен триггерить много запросов к серверу (**debounce**) Ссылка на [код]()
+- [x] Хотя бы несколько компонентов используют **PropTypes** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/components/Card/Card.tsx#L64) и [второй](https://github.com/karina-davydenko/movie-app/blob/main/src/components/ListCards/ListCards.tsx#L33)
+- [x] Поиск не должен триггерить много запросов к серверу (**debounce**) Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/shared/hooks/useDebounce.ts)
 - [x] Есть применение **lazy + Suspense** Ссылка на код [lazy](https://github.com/karina-davydenko/movie-app/blob/main/src/app/router/router.tsx#L9) [Suspense](https://github.com/karina-davydenko/movie-app/blob/main/src/main.tsx#L19)
 
 **Redux**
 
 - [x] Используем **Modern Redux with Redux Toolkit** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/store/store.ts)
 - [x] Используем **слайсы** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/shared/reducers/Firestore/firestoreSlice.ts)
-- [ ] Есть хотя бы одна **кастомная мидлвара** Ссылка на [код]()
+- [x] Есть хотя бы одна **кастомная мидлвара** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/store/middlewares/authMiddleware.ts)
 - [x] Используется **RTK Query** Ссылка на [код](https://github.com/karina-davydenko/movie-app/blob/main/src/app/store/api/kinopoiskApi.ts)
 - [x] Используется **Transforming Responses** Ссылка на [код](https://github.com/karina-davydenko/movie-app/tree/main/src/app/store/api/transformResponses)
 
@@ -48,3 +48,4 @@
 
 - [x] Проект собран при помощи Vite
 - [x] Использована React-error-boundery
+- [x] Использована UI библиотека MUI
