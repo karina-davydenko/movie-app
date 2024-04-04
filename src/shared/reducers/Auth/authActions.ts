@@ -29,6 +29,7 @@ export const signup = createAsyncThunk(
     }
   },
 )
+console.dir(signup)
 
 export const login = createAsyncThunk(
   'auth/login',

@@ -6,13 +6,14 @@ type UserState = {
   favorites: number[]
   history: string[]
   error: string | undefined
+  isBdLoading: boolean
 }
 
 const initialState: UserState = {
   id: null,
   favorites: [],
   history: [],
-
+  isBdLoading: false,
   error: undefined,
 }
 

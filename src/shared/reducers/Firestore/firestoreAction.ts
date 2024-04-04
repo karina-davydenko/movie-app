@@ -32,7 +32,7 @@ export const setProfile = createAsyncThunk(
 )
 
 export const getProfile = createAsyncThunk(
-  'firestor/getProfile',
+  'firestore/getProfile',
   async (userId: string, { rejectWithValue }) => {
     try {
       const userRef = doc(db, 'users', userId)

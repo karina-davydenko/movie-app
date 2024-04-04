@@ -7,15 +7,19 @@ import {
   Grid,
   Typography,
 } from '@mui/material'
-
+import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import type { ResultFilms } from '../../app/store/api/transformResponses/types'
 import { useFavorites } from '../../shared/hooks/useFavorites'
 
-export default function FilmCard({ film }: { film: ResultFilms }) {
+type Props = {
+  id: number
+  nameRu: string
+  posterUrlPreview: string
+}
+
+export default function FilmCard({ id, nameRu, posterUrlPreview }: Props) {
   const navigate = useNavigate()
-  const { id, nameRu, posterUrlPreview } = film
 
   const { isFavorites, handleFavorites } = useFavorites(id)
   const handleClick = (id: number) => {
@@ -55,4 +59,10 @@ export default function FilmCard({ film }: { film: ResultFilms }) {
       </Card>
     </Grid>
   )
+}
+
+FilmCard.propTypes = {
+  id: PropTypes.number,
+  nameRu: PropTypes.string,
+  posterUrlPreview: PropTypes.string,
 }

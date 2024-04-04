@@ -1,4 +1,4 @@
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react'
 import { createContext, useMemo, useState } from 'react'
 
 type Theme = 'default' | 'secondary'
@@ -20,14 +20,14 @@ export const ThemeContext = createContext<ThemeContext>({
 export function ThemeProvider({ children }: Props) {
   const [theme, setTheme] = useState<Theme>('default')
 
-  function toggleTheme(): void {
-    setTheme(prevTheme => (prevTheme === 'default' ? 'secondary' : 'default'))
-  }
-
   const contextValue = useMemo(
     () => ({
       theme,
-      toggleTheme,
+      toggleTheme(): void {
+        setTheme(prevTheme =>
+          prevTheme === 'default' ? 'secondary' : 'default',
+        )
+      },
     }),
     [theme],
   )
