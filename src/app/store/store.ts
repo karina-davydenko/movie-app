@@ -5,6 +5,7 @@ import firestoreSlice from '../../shared/reducers/Firestore/firestoreSlice'
 import authSlice from '../../shared/reducers/Auth/authSlice'
 /* eslint-disable @typescript-eslint/no-restricted-imports */
 import { useDispatch, useSelector } from 'react-redux'
+import { authMiddleware } from './middlewares/authMiddleware'
 
 const rootReducer = combineReducers({
   [kinopoiskApi.reducerPath]: kinopoiskApi.reducer,
@@ -25,7 +26,9 @@ export const store = configureStore({
           'auth/setAuthorized',
         ],
       },
-    }).concat(kinopoiskApi.middleware),
+    })
+      .concat(kinopoiskApi.middleware)
+      .concat(authMiddleware.middleware),
 })
 
 setupListeners(store.dispatch)

@@ -2,7 +2,6 @@ import { addToHistory } from '../reducers/Firestore/firestoreAction'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/store/store'
 import { getIsAuth, getUserId } from '../reducers/Auth/selectors'
-import { ResultFilms } from '../../app/store/api/transformResponses/types'
 
 export function useHistory() {
   const dispatch = useAppDispatch()

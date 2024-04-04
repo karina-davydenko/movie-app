@@ -1,7 +1,7 @@
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useHistory } from '../../shared/hooks/useAddHistory'
 import { useState } from 'react'
 import { useGetSearchByKeywordQuery } from '../../app/store/api/kinopoiskApi'

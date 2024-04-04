@@ -42,6 +42,10 @@ const authSlice = createSlice({
         state.email = action.payload.email
         state.isAuth = true
       })
+      .addCase(signup.rejected, (state, action: any) => {
+        state.isLoading = false
+        state.error = action.payload.code
+      })
       .addCase(login.pending, state => {
         state.isLoading = true
       })
@@ -51,6 +55,10 @@ const authSlice = createSlice({
         state.email = action.payload.email
         state.isAuth = true
       })
+      .addCase(login.rejected, (state, action: any) => {
+        state.isLoading = false
+        state.error = action.payload.code
+      })
       .addCase(logout.pending, state => {
         state.isLoading = true
       })
@@ -59,8 +67,16 @@ const authSlice = createSlice({
         state.email = null
         state.isAuth = false
       })
+      .addCase(logout.rejected, (state, action: any) => {
+        state.isLoading = false
+        state.error = action.payload.code
+      })
       .addCase(onAuth.pending, state => {
         state.isLoading = true
+      })
+      .addCase(onAuth.rejected, (state, action: any) => {
+        state.isLoading = false
+        state.error = action.payload.code
       })
   },
 })
