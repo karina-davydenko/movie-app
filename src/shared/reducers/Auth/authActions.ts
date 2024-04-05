@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import {
+  UserCredential,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -8,50 +9,63 @@ import {
 import { auth } from '../../../app/firebase/firebase'
 import { setAuthorized, setLoading } from './authSlice'
 import { getProfile } from '../Firestore/firestoreAction'
+import { FirebaseError } from 'firebase/app'
 
 type User = {
   email: string
   password: string
 }
 
-export const signup = createAsyncThunk(
-  'auth/signup',
-  async ({ email, password }: User, { rejectWithValue }) => {
-    try {
-      const registerResponse = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      )
-      return registerResponse.user
-    } catch (error) {
-      return rejectWithValue(error)
-    }
-  },
-)
-console.dir(signup)
+type AsyncThunkConfig = {
+  rejectValue: FirebaseError
+}
 
-export const login = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }: User, { rejectWithValue }) => {
-    try {
-      const registerResponse = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      )
-      return registerResponse.user
-    } catch (error) {
-      return rejectWithValue(error)
-    }
-  },
-)
-
-export const logout = createAsyncThunk('auth/logout', async () => {
-  await signOut(auth)
+export const signup = createAsyncThunk<
+  UserCredential['user'],
+  User,
+  AsyncThunkConfig
+>('auth/signup', async ({ email, password }, { rejectWithValue }) => {
+  try {
+    const registerResponse = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    )
+    return registerResponse.user as UserCredential['user']
+  } catch (error) {
+    return rejectWithValue(error as FirebaseError)
+  }
 })
 
-export const onAuth = createAsyncThunk(
+export const login = createAsyncThunk<
+  UserCredential['user'],
+  User,
+  AsyncThunkConfig
+>('auth/login', async ({ email, password }: User, { rejectWithValue }) => {
+  try {
+    const registerResponse = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    )
+    return registerResponse.user
+  } catch (error) {
+    return rejectWithValue(error as FirebaseError)
+  }
+})
+
+export const logout = createAsyncThunk<void, void, AsyncThunkConfig>(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await signOut(auth)
+    } catch (error) {
+      return rejectWithValue(error as FirebaseError)
+    }
+  },
+)
+
+export const onAuth = createAsyncThunk<void, void, { rejectValue: string }>(
   'auth/onAuth',
   async (_, { dispatch, rejectWithValue }) => {
     onAuthStateChanged(auth, async user => {
