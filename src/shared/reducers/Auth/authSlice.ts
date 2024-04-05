@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { login, logout, onAuth, signup } from './authActions'
 
-type AuthState = {
+export type AuthState = {
   id: string
   isAuth: boolean
   isLoading: boolean
@@ -42,9 +42,9 @@ const authSlice = createSlice({
         state.email = action.payload.email
         state.isAuth = true
       })
-      .addCase(signup.rejected, (state, action: any) => {
+      .addCase(signup.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload.code
+        state.error = action.payload?.code
       })
       .addCase(login.pending, state => {
         state.isLoading = true
@@ -55,9 +55,9 @@ const authSlice = createSlice({
         state.email = action.payload.email
         state.isAuth = true
       })
-      .addCase(login.rejected, (state, action: any) => {
+      .addCase(login.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload.code
+        state.error = action.payload?.code
       })
       .addCase(logout.pending, state => {
         state.isLoading = true
@@ -67,16 +67,16 @@ const authSlice = createSlice({
         state.email = null
         state.isAuth = false
       })
-      .addCase(logout.rejected, (state, action: any) => {
+      .addCase(logout.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload.code
+        state.error = action.payload?.code
       })
       .addCase(onAuth.pending, state => {
         state.isLoading = true
       })
-      .addCase(onAuth.rejected, (state, action: any) => {
+      .addCase(onAuth.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload.code
+        state.error = action.payload
       })
   },
 })
