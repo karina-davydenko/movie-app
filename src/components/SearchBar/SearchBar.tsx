@@ -1,13 +1,12 @@
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useHistory } from '../../shared/hooks/useAddHistory'
 import { useState } from 'react'
 import { useGetSearchByKeywordQuery } from '../../app/store/api/kinopoiskApi'
 import { useDebounce } from '../../shared/hooks/useDebounce'
 import { Box } from '@mui/material'
-import { nanoid } from '@reduxjs/toolkit'
 
 export default function SearchBar() {
   const { search } = useParams()
@@ -15,7 +14,11 @@ export default function SearchBar() {
   const [inputValue, setInputValue] = useState('')
   const deb = useDebounce(inputValue, 500)
   const { data } = useGetSearchByKeywordQuery({ query: deb, page: '1' })
-  const options = data?.films.map(f => f.nameRu)
+  const options = data?.films
+  const navigate = useNavigate()
+  const handleClick = (id: number) => {
+    navigate('/film/' + id)
+  }
 
   return (
     <Autocomplete
@@ -23,6 +26,9 @@ export default function SearchBar() {
       filterOptions={x => x}
       options={options || []}
       onChange={handleOnChange}
+      getOptionLabel={option =>
+        typeof option === 'string' ? option : option.nameRu
+      }
       onInputChange={(e, newValue) => {
         setInputValue(newValue)
       }}
@@ -33,14 +39,15 @@ export default function SearchBar() {
       renderOption={(props, option) => (
         <Box
           {...props}
+          onClick={() => handleClick(option.id)}
           sx={{
             borderRadius: '8px',
             margin: '5px',
           }}
           component='li'
-          key={props.id}
+          key={option.id}
         >
-          {option}
+          {option.nameRu}
         </Box>
       )}
     />
