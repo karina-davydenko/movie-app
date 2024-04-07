@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import type {
+  UserCredential} from 'firebase/auth';
 import {
-  UserCredential,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -9,7 +10,7 @@ import {
 import { auth } from '../../../app/firebase/firebase'
 import { setAuthorized, setLoading } from './authSlice'
 import { getProfile } from '../Firestore/firestoreAction'
-import { FirebaseError } from 'firebase/app'
+import type { FirebaseError } from 'firebase/app'
 
 type User = {
   email: string

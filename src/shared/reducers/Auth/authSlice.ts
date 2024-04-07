@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { login, logout, onAuth, signup } from './authActions'
 
 export type AuthState = {
